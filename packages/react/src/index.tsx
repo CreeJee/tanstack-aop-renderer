@@ -12,3 +12,4 @@ export {
   $TanstackAopTableHeadRow,
   $TanstackAopTableRow,
 } from "./renderer/index";
+export { useCompositionProps } from "./context/RendererComposition";

@@ -1,8 +1,7 @@
-import { JSX, PropsWithChildren } from "react";
-import { createSafeContext } from "./utils/createSafeContext";
-import { mergeProps } from "@react-aria/utils";
+import { JSX } from "react";
+import { createSafeContext } from "../utils/createSafeContext";
 
-type RendererComposerContext = {
+export type RendererCompositionVariant = {
   tableProps: JSX.IntrinsicElements["$TanstackAopTable"];
   captionProps: JSX.IntrinsicElements["$TanstackAopTableCaption"];
   headProps: JSX.IntrinsicElements["$TanstackAopTableHead"];
@@ -15,7 +14,7 @@ type RendererComposerContext = {
   colProps: JSX.IntrinsicElements["$TanstackAopTableCol"];
 };
 
-const defaultContextValue = {
+export const RendererCompositionDefaultValue: RendererCompositionVariant = {
   tableProps: {},
   captionProps: {},
   headProps: {},
@@ -27,18 +26,10 @@ const defaultContextValue = {
   colGroupProps: {},
   colProps: {},
 };
-const [RendererComposerInner, _useRenderComposer] =
-  createSafeContext<RendererComposerContext>("@aop-tanstack-table");
+export type RendererCompositionContext = RendererCompositionVariant;
+const [_RendererComposition, _useRenderComposition] =
+  createSafeContext<RendererCompositionContext>("@aop-tanstack-table");
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useRenderComposer = _useRenderComposer;
-export const RendererComposer = ({
-  children,
-  ...props
-}: PropsWithChildren<Partial<RendererComposerContext>>) => {
-  return (
-    <RendererComposerInner value={mergeProps(defaultContextValue, props)}>
-      {children}
-    </RendererComposerInner>
-  );
-};
+export const useCompositionProps = _useRenderComposition;
+export const RenderCompositionProvider = _RendererComposition;

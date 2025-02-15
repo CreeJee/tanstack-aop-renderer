@@ -1,6 +1,11 @@
 import { Table } from "@tanstack/react-table";
-import { FC, PropsWithChildren } from "react";
-import { RendererComposer } from "./context";
+import { FC, useState, PropsWithChildren } from "react";
+import {
+  RenderCompositionProvider,
+  RendererCompositionVariant,
+  RendererCompositionDefaultValue,
+} from "./context/RendererComposition";
+import { RendererCompositionSetProvider } from "./context/RendererCompositionSet";
 
 type TableRendererModuleProps<TData> = { table: Table<TData> };
 type TableRendererModule<TData> = FC<TableRendererModuleProps<TData>>;
@@ -16,12 +21,20 @@ export const TableComposition = <TData,>({
   modules,
   children,
 }: PropsWithChildren<TableCompositionProps<TData>>) => {
+  const [state, setState] = useState<RendererCompositionVariant>(
+    RendererCompositionDefaultValue
+  );
   return (
-    <RendererComposer>
-      {modules.map((Renderer) => (
-        <Renderer table={table} />
-      ))}
-      {children}
-    </RendererComposer>
+    <>
+      <RendererCompositionSetProvider value={setState}>
+        {modules.map((Renderer, key) => (
+          <Renderer table={table} key={key} />
+        ))}
+      </RendererCompositionSetProvider>
+
+      <RenderCompositionProvider value={state}>
+        {children}
+      </RenderCompositionProvider>
+    </>
   );
 };
