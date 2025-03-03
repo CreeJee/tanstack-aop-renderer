@@ -8,13 +8,13 @@ const useMergeComposition = <Type extends keyof RendererCompositionVariant>(
   type: Type,
   props: RendererCompositionVariant[Type]
 ) => {
-  const setState = useRendererCompositionSet();
+  const applyEffect = useRendererCompositionSet();
   useEffect(() => {
-    setState((variant) => ({
+    return applyEffect((variant) => ({
       ...variant,
-      [type]: mergeProps(variant.tableProps, props),
+      [type]: mergeProps(variant[type], props),
     }));
-  }, [props, setState, type]);
+  }, [props, applyEffect, type]);
 };
 
 export const $TanstackAopTable = ({

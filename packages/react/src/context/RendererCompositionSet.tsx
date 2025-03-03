@@ -6,8 +6,12 @@ import { debounce } from "es-toolkit";
 type RendererCompositionSetContextValue = Dispatch<
   SetStateAction<RendererCompositionVariant>
 >;
+type RendererCompositionSetContextDispatchAndRemover = (
+  value: SetStateAction<RendererCompositionVariant>
+) => () => void;
+
 const [_RendererCompositionSetProvider, _useRendererCompositionSet] =
-  createSafeContext<RendererCompositionSetContextValue>(
+  createSafeContext<RendererCompositionSetContextDispatchAndRemover>(
     "RendererCompositionSet"
   );
 
@@ -32,15 +36,21 @@ export const RendererCompositionSetProvider = ({
       }
     }, 0)
   );
-  const enqueueUpdate = (
+  const enqueueUpdateOrDelete = (
     valueOrSetter: SetStateAction<RendererCompositionVariant>
   ) => {
     updateQueueRef.current.push(valueOrSetter);
     debouncedSetterRef.current();
+    return () => {
+      updateQueueRef.current.splice(
+        updateQueueRef.current.indexOf(valueOrSetter),
+        1
+      );
+    };
   };
 
   return (
-    <_RendererCompositionSetProvider value={enqueueUpdate}>
+    <_RendererCompositionSetProvider value={enqueueUpdateOrDelete}>
       {children}
     </_RendererCompositionSetProvider>
   );
