@@ -1,17 +1,17 @@
-import { JSX } from "react";
 import { createSafeContext } from "../utils/createSafeContext";
+import { AOPTableRendererProps } from "../renderer/AOPTableRenderer";
 
 export type RendererCompositionVariant = {
-  tableProps: JSX.IntrinsicElements["$TanstackAopTable"];
-  captionProps: JSX.IntrinsicElements["$TanstackAopTableCaption"];
-  headProps: JSX.IntrinsicElements["$TanstackAopTableHead"];
-  headRowProps: JSX.IntrinsicElements["$TanstackAopTableHeadRow"];
-  bodyProps: JSX.IntrinsicElements["$TanstackAopTableBody"];
-  rowProps: JSX.IntrinsicElements["$TanstackAopTableRow"];
-  cellProps: JSX.IntrinsicElements["$TanstackAopTableCell"];
-  footProps: JSX.IntrinsicElements["$TanstackAopTableFoot"];
-  colGroupProps: JSX.IntrinsicElements["$TanstackAopTableColGroup"];
-  colProps: JSX.IntrinsicElements["$TanstackAopTableCol"];
+  tableProps: AOPTableRendererProps["$TanstackAopTable"];
+  captionProps: AOPTableRendererProps["$TanstackAopTableCaption"];
+  headProps: AOPTableRendererProps["$TanstackAopTableHead"];
+  headRowProps: AOPTableRendererProps["$TanstackAopTableHeadRow"];
+  bodyProps: AOPTableRendererProps["$TanstackAopTableBody"];
+  rowProps: AOPTableRendererProps["$TanstackAopTableRow"];
+  cellProps: AOPTableRendererProps["$TanstackAopTableCell"];
+  footProps: AOPTableRendererProps["$TanstackAopTableFoot"];
+  colGroupProps: AOPTableRendererProps["$TanstackAopTableColGroup"];
+  colProps: AOPTableRendererProps["$TanstackAopTableCol"];
 };
 
 export const RendererCompositionDefaultValue: RendererCompositionVariant = {

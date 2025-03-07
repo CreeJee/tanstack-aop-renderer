@@ -7,15 +7,15 @@ import {
   Table,
   useReactTable,
 } from "@tanstack/react-table";
-import { TableComposition } from "../table";
-import { $TanstackAopTableBody, $TanstackAopTableHead } from "../renderer";
+import { TableComposition } from "tanstack-table-aop-react";
+import { $TanstackAopTableBody, $TanstackAopTableHead } from "tanstack-table-aop-react";
 import React, {
   RefCallback,
   useCallback,
   useLayoutEffect,
   useState,
 } from "react";
-import { useCompositionProps } from "../context/RendererComposition";
+import { useCompositionProps } from "tanstack-table-aop-react";
 
 type Person = {
   firstName: string;

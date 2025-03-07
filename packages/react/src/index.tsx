@@ -1,4 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
+
 export { TableComposition, type TableCompositionProps } from "./table";
 export {
   $TanstackAopTable,
@@ -11,5 +11,5 @@ export {
   $TanstackAopTableHead,
   $TanstackAopTableHeadRow,
   $TanstackAopTableRow,
-} from "./renderer/index";
+} from "./renderer/AOPTableRenderer";
 export { useCompositionProps } from "./context/RendererComposition";

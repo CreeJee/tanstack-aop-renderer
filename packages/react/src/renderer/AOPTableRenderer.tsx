@@ -1,9 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+
 import { JSX, useEffect } from "react";
 import type { RendererCompositionVariant } from "../context/RendererComposition";
 import { useRendererCompositionSet } from "../context/RendererCompositionSet";
 import { mergeProps } from "@react-aria/utils";
 
+export type AOPTableRendererProps = {
+  $TanstackAopTable: JSX.IntrinsicElements["table"];
+  $TanstackAopTableCaption: JSX.IntrinsicElements["caption"];
+  $TanstackAopTableHead: JSX.IntrinsicElements["thead"];
+  $TanstackAopTableHeadRow: JSX.IntrinsicElements["th"];
+  $TanstackAopTableBody: JSX.IntrinsicElements["tbody"];
+  $TanstackAopTableRow: JSX.IntrinsicElements["tr"];
+  $TanstackAopTableCell: JSX.IntrinsicElements["td"];
+  $TanstackAopTableFoot: JSX.IntrinsicElements["tfoot"];
+  $TanstackAopTableColGroup: JSX.IntrinsicElements["colgroup"];
+  $TanstackAopTableCol: JSX.IntrinsicElements["col"];
+}
 const useMergeComposition = <Type extends keyof RendererCompositionVariant>(
   type: Type,
   props: RendererCompositionVariant[Type]
@@ -20,70 +33,70 @@ const useMergeComposition = <Type extends keyof RendererCompositionVariant>(
 export const $TanstackAopTable = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTable"]) => {
+}: AOPTableRendererProps["$TanstackAopTable"]) => {
   useMergeComposition("tableProps", props);
   return children;
 };
 export const $TanstackAopTableCaption = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableCaption"]) => {
+}: AOPTableRendererProps["$TanstackAopTableCaption"]) => {
   useMergeComposition("captionProps", props);
   return children;
 };
 export const $TanstackAopTableHead = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableHead"]) => {
+}: AOPTableRendererProps["$TanstackAopTableHead"]) => {
   useMergeComposition("headProps", props);
   return children;
 };
 export const $TanstackAopTableHeadRow = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableHeadRow"]) => {
+}: AOPTableRendererProps["$TanstackAopTableHeadRow"]) => {
   useMergeComposition("headRowProps", props);
   return children;
 };
 export const $TanstackAopTableBody = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableBody"]) => {
+}: AOPTableRendererProps["$TanstackAopTableBody"]) => {
   useMergeComposition("bodyProps", props);
   return children;
 };
 export const $TanstackAopTableRow = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableRow"]) => {
+}: AOPTableRendererProps["$TanstackAopTableRow"]) => {
   useMergeComposition("rowProps", props);
   return children;
 };
 export const $TanstackAopTableCell = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableCell"]) => {
+}: AOPTableRendererProps["$TanstackAopTableCell"]) => {
   useMergeComposition("cellProps", props);
   return children;
 };
 export const $TanstackAopTableFoot = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableFoot"]) => {
+}: AOPTableRendererProps["$TanstackAopTableFoot"]) => {
   useMergeComposition("footProps", props);
   return children;
 };
 export const $TanstackAopTableColGroup = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableColGroup"]) => {
+}: AOPTableRendererProps["$TanstackAopTableColGroup"]) => {
   useMergeComposition("colGroupProps", props);
   return children;
 };
 export const $TanstackAopTableCol = ({
   children,
   ...props
-}: JSX.IntrinsicElements["$TanstackAopTableCol"]) => {
+}: AOPTableRendererProps["$TanstackAopTableCol"]) => {
   useMergeComposition("colProps", props);
   return children;
 };
