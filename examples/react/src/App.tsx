@@ -116,7 +116,6 @@ const HeadBoldModule = () => {
 };
 export default function App() {
   const [data] = React.useState(() => [...defaultData]);
-  const rerender = React.useReducer(() => ({}), {})[1];
 
   const table = useReactTable({
     data,
@@ -126,16 +125,12 @@ export default function App() {
   return (
     <div className="p-2">
       <div className="h-4">
-        <TableComposition
-          table={table}
-          modules={[HeadBoldModule, BodyBoldModule]}
-        >
+        <TableComposition>
+          <HeadBoldModule />
+          <BodyBoldModule />
           <TableLayout table={table} />
         </TableComposition>
       </div>
-      <button onClick={rerender} className="border p-2">
-        Rerender
-      </button>
     </div>
   );
 }

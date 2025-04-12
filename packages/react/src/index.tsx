@@ -1,5 +1,4 @@
-
-export { TableComposition, type TableCompositionProps } from "./table";
+export { TableComposition } from "./table";
 export {
   $TanstackAopTable,
   $TanstackAopTableBody,

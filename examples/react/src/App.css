@@ -32,3 +32,7 @@ tfoot th {
 .non-check {
   background-color: transparent;
 }
+
+.bold {
+  font-weight: bold;
+}
