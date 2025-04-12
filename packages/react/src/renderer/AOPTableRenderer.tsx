@@ -3,7 +3,6 @@
 import { JSX, useEffect } from "react";
 import type { RendererCompositionVariant } from "../context/RendererComposition";
 import { useRendererCompositionSet } from "../context/RendererCompositionSet";
-import { mergeProps } from "@react-aria/utils";
 
 export type AOPTableRendererProps = {
   $TanstackAopTable: JSX.IntrinsicElements["table"];
@@ -16,17 +15,22 @@ export type AOPTableRendererProps = {
   $TanstackAopTableFoot: JSX.IntrinsicElements["tfoot"];
   $TanstackAopTableColGroup: JSX.IntrinsicElements["colgroup"];
   $TanstackAopTableCol: JSX.IntrinsicElements["col"];
-}
+};
 const useMergeComposition = <Type extends keyof RendererCompositionVariant>(
   type: Type,
   props: RendererCompositionVariant[Type]
 ) => {
   const applyEffect = useRendererCompositionSet();
   useEffect(() => {
-    return applyEffect((variant) => ({
-      ...variant,
-      [type]: mergeProps(variant[type], props),
-    }));
+    return applyEffect((variant) => {
+      return {
+        ...variant,
+        [type]: {
+          ...variant[type],
+          ...props,
+        },
+      };
+    });
   }, [props, applyEffect, type]);
 };
 

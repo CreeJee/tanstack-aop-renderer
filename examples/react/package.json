@@ -1,5 +1,5 @@
 {
-  "name": "core-table",
+  "name": "@tanstack-table-aop/react-example",
   "private": true,
   "version": "0.0.0",
   "type": "module",

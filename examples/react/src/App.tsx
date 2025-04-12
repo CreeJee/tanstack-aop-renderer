@@ -1,5 +1,3 @@
-import "./index.css";
-
 import {
   createColumnHelper,
   flexRender,
@@ -8,14 +6,19 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { TableComposition } from "tanstack-table-aop-react";
-import { $TanstackAopTableBody, $TanstackAopTableHead } from "tanstack-table-aop-react";
+import {
+  $TanstackAopTableBody,
+  $TanstackAopTableHead,
+  useCompositionProps,
+} from "tanstack-table-aop-react";
 import React, {
   RefCallback,
   useCallback,
   useLayoutEffect,
   useState,
 } from "react";
-import { useCompositionProps } from "tanstack-table-aop-react";
+
+import "./App.css";
 
 type Person = {
   firstName: string;
@@ -103,6 +106,7 @@ const HeadBoldModule = () => {
   const ref: RefCallback<HTMLTableSectionElement> = useCallback((ref) => {
     console.log(ref);
   }, []);
+
   return (
     <$TanstackAopTableHead
       className={`bold ${state === true ? "check" : "not-check"}`}
@@ -129,7 +133,7 @@ export default function App() {
           <TableLayout table={table} />
         </TableComposition>
       </div>
-      <button onClick={() => rerender()} className="border p-2">
+      <button onClick={rerender} className="border p-2">
         Rerender
       </button>
     </div>

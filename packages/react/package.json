@@ -17,12 +17,12 @@
   ],
   "scripts": {
     "dev": "vite",
+    "watch": "vite build --watch",
     "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-aria/utils": "^3.27.0",
     "es-toolkit": "^1.32.0"
   },
   "devDependencies": {
@@ -45,7 +45,7 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "peerDependencies": {
-    "@tanstack/react-table": "^8.21.2",
+    "@tanstack/react-table": "^8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
