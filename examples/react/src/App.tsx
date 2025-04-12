@@ -5,12 +5,12 @@ import {
   Table,
   useReactTable,
 } from "@tanstack/react-table";
-import { TableComposition } from "tanstack-table-aop-react";
 import {
-  $TanstackAopTableBody,
-  $TanstackAopTableHead,
-  useCompositionProps,
-} from "tanstack-table-aop-react";
+  TanstackAopTableComposition,
+  TanstackAopTableTableBody,
+  TanstackAopTableTableHead,
+  useAopTableCompositionProps,
+} from "@tanstack-table-aop/react";
 import React, {
   RefCallback,
   useCallback,
@@ -91,7 +91,7 @@ const BodyBoldModule = () => {
   const ref: RefCallback<HTMLTableSectionElement> = useCallback((ref) => {
     console.log(ref);
   }, []);
-  return <$TanstackAopTableBody className="bold" ref={ref} />;
+  return <TanstackAopTableTableBody className="bold" ref={ref} />;
 };
 const HeadBoldModule = () => {
   const [state, setState] = useState<boolean>(false);
@@ -108,14 +108,14 @@ const HeadBoldModule = () => {
   }, []);
 
   return (
-    <$TanstackAopTableHead
+    <TanstackAopTableTableHead
       className={`bold ${state === true ? "check" : "not-check"}`}
       ref={ref}
     />
   );
 };
 const BodyBGModule = () => {
-  return <$TanstackAopTableBody className="bg-green" />;
+  return <TanstackAopTableTableBody className="bg-green" />;
 };
 export default function App() {
   const [data] = React.useState(() => [...defaultData]);
@@ -128,12 +128,12 @@ export default function App() {
   return (
     <div className="p-2">
       <div className="h-4">
-        <TableComposition>
+        <TanstackAopTableComposition>
           <HeadBoldModule />
           <BodyBoldModule />
           <BodyBGModule />
           <TableLayout table={table} />
-        </TableComposition>
+        </TanstackAopTableComposition>
       </div>
     </div>
   );
@@ -142,7 +142,7 @@ export default function App() {
 const TableLayout = <TData,>({
   table,
 }: React.PropsWithChildren<{ table: Table<TData> }>) => {
-  const { headProps, bodyProps } = useCompositionProps();
+  const { headProps, bodyProps } = useAopTableCompositionProps();
   return (
     <table>
       <thead {...headProps}>

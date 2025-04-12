@@ -7,13 +7,13 @@
 
 ## Introduction
 
-`tanstack-aop-renderer` allows developers to break down complex table UIs into composable, independent rendering modules — especially useful when working with [TanStack Table](https://tanstack.com/table).
+`tanstack-aop-renderer` helps developers build complex table UIs by composing independent rendering modules — especially useful when working with [TanStack Table](https://tanstack.com/table).
 
 This library focuses on:
 
 - Horizontal (column-oriented) rendering
 - Separating rendering concerns
-- Better scalability for complex features like:
+- scalable architecture for complex features like:
   - Column Drag & Drop
   - Sticky Columns / Headers
   - Custom Background / Effects per Column
@@ -25,9 +25,9 @@ Normally, adding features like column drag or sticky behavior requires placing a
 
 This project introduces a new idea:
 
-> _"What if table rendering could follow AOP (Aspect Oriented Programming) ideas?"_
+> _"Wouldn't it be better if each concern had its own module?"_
 
-Renderers become like isolated "aspects", and `TableComposition` acts as the weaving layer.
+By introducing `TanstackAopTableComposition`, you can build your table layout by composing independent modules like Head, Body, Effects, etc.
 
 ---
 
@@ -42,11 +42,11 @@ pnpm add tanstack-aop-renderer
 ## Basic Usage
 
 ```tsx
-<TableComposition>
-  <$TanstackAopTableHead />
-  <$TanstackAopTableBody />
-  {/* Optional: Add your own modules */}
-</TableComposition>
+<TanstackAopTableComposition>
+  <TanstackAopTableTableHead />
+  <TanstackAopTableTableBody />
+  {/* Optional: Add your custom modules */}
+</TanstackAopTableComposition>
 ```
 
 The usual `useReactTable()` from TanStack Table is used as-is.

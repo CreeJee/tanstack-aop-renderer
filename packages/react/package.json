@@ -1,5 +1,5 @@
 {
-  "name": "tanstack-table-aop-react",
+  "name": "@tanstack-table-aop/react",
   "private": true,
   "version": "0.0.0",
   "type": "module",

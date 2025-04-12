@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "tanstack-table-aop-react": path.resolve(
+      "@tanstack-table-aop/react": path.resolve(
         __dirname,
         "../../packages/react/src/index.tsx"
       ),

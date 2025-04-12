@@ -1,36 +1,39 @@
 # tanstack-aop-renderer
 
-> TanStack Table 을 위한 AOP 기반 테이블 랜더러  
-> 수평 레이아웃, 관심사 분리, 모듈화 지원
+> TanStack Table을 위한 AOP 기반 테이블 렌더러  
+> 수평 레이아웃, 관심사 분리, 모듈화 지향
 
 ## 소개
 
-`tanstack-aop-renderer` 는 복잡한 테이블 UI를 관리하기 위해 AOP (Aspect Oriented Programming) 개념을 테이블 렌더링에 도입한 라이브러리입니다.
+`tanstack-aop-renderer` 는 [TanStack Table](https://tanstack.com/table)을 사용할 때,  
+복잡해지기 쉬운 테이블 UI 렌더링 구조를 AOP (Aspect Oriented Programming) 방식으로 나눠서 관리할 수 있게 도와주는 라이브러리입니다.
 
-### 주요 특징
+### 어떤 특징이 있나요?
 
-- 수평 (Column 기반) 렌더링
-- 관심사 별 모듈 분리
-- 확장성 높은 구조
-- 이런 케이스에 강력:
+- 수평(Column 중심) 렌더링 방식
+- 관심사별 모듈화
+- 복잡한 테이블 UI 에 강한 확장성
+- 특히 이런 경우에 유용합니다:
   - 컬럼 Drag & Drop
   - Sticky Header / Column
-  - Column 별 커스텀 효과
+  - Column 별 커스텀 렌더링
   - 반응형 Column 구성
-  - Column Virtualization 대응
+  - Column Virtualization 적용
 
 ---
 
-## 왜 만들었나?
+## 왜 만들었나요?
 
-TanStack Table 을 이용한 테이블 개발에서 기능이 많아질수록 renderer 하나가 너무 많은 책임을 떠안게 됩니다.
+TanStack Table 은 본질적으로 Headless 구조라 렌더링을 직접 구현해야 하는데,  
+여기에 기능이 많이 추가되면 어느새 렌더러 하나가 너무 많은 책임을 떠안게 됩니다.
 
-> _"이 로직들... 파일 나눠서 관리하고 싶지 않아?"_
+> _"이런 로직들... 따로 나눠서 관리하면 더 좋지 않을까?"_
 
-이 고민에서 시작된게 `tanstack-aop-renderer` 입니다.
+`tanstack-aop-renderer` 는 바로 이런 생각에서 출발했습니다.
 
-`TableComposition` 이라는 레이어를 두고  
-Header, Body, Custom Module 을 관심사 별로 독립 시켜서 합쳐주는 방식입니다.
+`TanstackAopTableComposition` 이라는 레이어를 기준으로  
+Header, Body, Custom Module 들을 독립적으로 나눠서 구성하고,  
+최종적으로 `TableLayout` 이 전체를 그려주는 구조입니다.
 
 ---
 
@@ -42,26 +45,28 @@ pnpm add tanstack-aop-renderer
 
 ---
 
-## 사용 방법
+## 기본 사용법
 
 ```tsx
-<TableComposition>
-  <$TanstackAopTableHead />
-  <$TanstackAopTableBody />
-  {/* 원하면 custom module 도 추가 가능 */}
-</TableComposition>
+<TanstackAopTableComposition>
+  <TanstackAopTableTableHead />
+  <TanstackAopTableTableBody />
+  {/* 필요시 Custom Module 추가 가능 */}
+</TanstackAopTableComposition>
 ```
 
-TanStack Table 의 `useReactTable()` 는 그대로 사용합니다.
+TanStack Table 의 `useReactTable()` 은 그대로 사용하면 됩니다.
 
 ---
 
 ## 예제 코드
 
+작동 예시는 여기에서 확인할 수 있어요:
+
 https://github.com/CreeJee/tanstack-aop-renderer/tree/main/examples/react
 
 ---
 
-## 라이센스
+## 라이선스
 
 MIT

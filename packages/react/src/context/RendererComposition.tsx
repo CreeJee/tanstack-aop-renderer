@@ -2,16 +2,16 @@ import { createSafeContext } from "../utils/createSafeContext";
 import { AOPTableRendererProps } from "../renderer/AOPTableRenderer";
 
 export type RendererCompositionVariant = {
-  tableProps: AOPTableRendererProps["$TanstackAopTable"];
-  captionProps: AOPTableRendererProps["$TanstackAopTableCaption"];
-  headProps: AOPTableRendererProps["$TanstackAopTableHead"];
-  headRowProps: AOPTableRendererProps["$TanstackAopTableHeadRow"];
-  bodyProps: AOPTableRendererProps["$TanstackAopTableBody"];
-  rowProps: AOPTableRendererProps["$TanstackAopTableRow"];
-  cellProps: AOPTableRendererProps["$TanstackAopTableCell"];
-  footProps: AOPTableRendererProps["$TanstackAopTableFoot"];
-  colGroupProps: AOPTableRendererProps["$TanstackAopTableColGroup"];
-  colProps: AOPTableRendererProps["$TanstackAopTableCol"];
+  tableProps: AOPTableRendererProps["TanstackAopTableTable"];
+  captionProps: AOPTableRendererProps["TanstackAopTableTableCaption"];
+  headProps: AOPTableRendererProps["TanstackAopTableTableHead"];
+  headRowProps: AOPTableRendererProps["TanstackAopTableTableHeadRow"];
+  bodyProps: AOPTableRendererProps["TanstackAopTableTableBody"];
+  rowProps: AOPTableRendererProps["TanstackAopTableTableRow"];
+  cellProps: AOPTableRendererProps["TanstackAopTableTableCell"];
+  footProps: AOPTableRendererProps["TanstackAopTableTableFoot"];
+  colGroupProps: AOPTableRendererProps["TanstackAopTableTableColGroup"];
+  colProps: AOPTableRendererProps["TanstackAopTableTableCol"];
 };
 
 export const RendererCompositionDefaultValue: RendererCompositionVariant = {
@@ -31,5 +31,5 @@ const [_RendererComposition, _useRenderComposition] =
   createSafeContext<RendererCompositionContext>("@aop-tanstack-table");
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const useCompositionProps = _useRenderComposition;
+export const useAopTableCompositionProps = _useRenderComposition;
 export const RenderCompositionProvider = _RendererComposition;

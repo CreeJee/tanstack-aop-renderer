@@ -7,7 +7,9 @@ import {
 import { RendererCompositionSetProvider } from "./context/RendererCompositionSet";
 
 // render as composition
-export const TableComposition = ({ children }: PropsWithChildren) => {
+export const TanstackAopTableComposition = ({
+  children,
+}: PropsWithChildren) => {
   const [state, setState] = useState<RendererCompositionVariant>(
     RendererCompositionDefaultValue
   );

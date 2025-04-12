@@ -10,6 +10,9 @@ importers:
 
   examples/react:
     dependencies:
+      '@tanstack-table-aop/react':
+        specifier: workspace:*
+        version: link:../../packages/react
       '@tanstack/react-table':
         specifier: ^8.21.2
         version: 8.21.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -19,9 +22,6 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
-      tanstack-table-aop-react:
-        specifier: workspace:*
-        version: link:../../packages/react
     devDependencies:
       '@eslint/js':
         specifier: ^9.19.0

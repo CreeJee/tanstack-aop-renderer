@@ -4,16 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "pnpm --filter @tanstack-table-aop/react build && vite"
   },
   "dependencies": {
     "@tanstack/react-table": "^8.21.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tanstack-table-aop-react": "workspace:*"
+    "@tanstack-table-aop/react": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

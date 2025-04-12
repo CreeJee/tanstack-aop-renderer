@@ -1,14 +1,14 @@
-export { TableComposition } from "./table";
+export { TanstackAopTableComposition } from "./table";
 export {
-  $TanstackAopTable,
-  $TanstackAopTableBody,
-  $TanstackAopTableCaption,
-  $TanstackAopTableCell,
-  $TanstackAopTableCol,
-  $TanstackAopTableColGroup,
-  $TanstackAopTableFoot,
-  $TanstackAopTableHead,
-  $TanstackAopTableHeadRow,
-  $TanstackAopTableRow,
+  TanstackAopTableTable,
+  TanstackAopTableTableBody,
+  TanstackAopTableTableCaption,
+  TanstackAopTableTableCell,
+  TanstackAopTableTableCol,
+  TanstackAopTableTableColGroup,
+  TanstackAopTableTableFoot,
+  TanstackAopTableTableHead,
+  TanstackAopTableTableHeadRow,
+  TanstackAopTableTableRow,
 } from "./renderer/AOPTableRenderer";
-export { useCompositionProps } from "./context/RendererComposition";
+export { useAopTableCompositionProps } from "./context/RendererComposition";
