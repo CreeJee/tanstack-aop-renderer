@@ -114,6 +114,9 @@ const HeadBoldModule = () => {
     />
   );
 };
+const BodyBGModule = () => {
+  return <$TanstackAopTableBody className="bg-green" />;
+};
 export default function App() {
   const [data] = React.useState(() => [...defaultData]);
 
@@ -128,6 +131,7 @@ export default function App() {
         <TableComposition>
           <HeadBoldModule />
           <BodyBoldModule />
+          <BodyBGModule />
           <TableLayout table={table} />
         </TableComposition>
       </div>

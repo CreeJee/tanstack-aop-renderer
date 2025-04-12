@@ -36,3 +36,7 @@ tfoot th {
 .bold {
   font-weight: bold;
 }
+
+.bg-green {
+  background-color: green;
+}
