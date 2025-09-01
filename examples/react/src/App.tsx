@@ -6,19 +6,22 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
-  TanstackAopTableComposition,
-  TanstackAopTableTableBody,
-  TanstackAopTableTableHead,
-  useAopTableCompositionProps,
+  PluginEntryPoint,
+  RenderTableDataCell,
+  RenderTableRow,
+  RenderTable,
+  RenderTableBody,
+  RenderTableFoot,
+  RenderTableHead,
+  RenderTableHeadCell,
 } from "@tanstack-table-aop/react";
-import React, {
-  RefCallback,
-  useCallback,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React from "react";
 
 import "./App.css";
+import { BodyBGModule } from "./modules/BodyBGModule";
+import { HeadBoldIntervalModule } from "./modules/HeadBoldIntervalModule";
+import { BodyBoldModule } from "./modules/BodyBoldModule";
+import { BodyUnderlineIntervalModule } from "./modules/BodyUnderlineIntervalModule";
 
 type Person = {
   firstName: string;
@@ -87,36 +90,6 @@ const columns = [
     footer: (info) => info.column.id,
   }),
 ];
-const BodyBoldModule = () => {
-  const ref: RefCallback<HTMLTableSectionElement> = useCallback((ref) => {
-    console.log(ref);
-  }, []);
-  return <TanstackAopTableTableBody className="bold" ref={ref} />;
-};
-const HeadBoldModule = () => {
-  const [state, setState] = useState<boolean>(false);
-  useLayoutEffect(() => {
-    const timer = setInterval(() => {
-      setState((prev) => !prev);
-    }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-  const ref: RefCallback<HTMLTableSectionElement> = useCallback((ref) => {
-    console.log(ref);
-  }, []);
-
-  return (
-    <TanstackAopTableTableHead
-      className={`bold ${state === true ? "check" : "not-check"}`}
-      ref={ref}
-    />
-  );
-};
-const BodyBGModule = () => {
-  return <TanstackAopTableTableBody className="bg-green" />;
-};
 export default function App() {
   const [data] = React.useState(() => [...defaultData]);
 
@@ -128,12 +101,13 @@ export default function App() {
   return (
     <div className="p-2">
       <div className="h-4">
-        <TanstackAopTableComposition>
-          <HeadBoldModule />
+        <PluginEntryPoint>
+          <HeadBoldIntervalModule />
           <BodyBoldModule />
           <BodyBGModule />
+          <BodyUnderlineIntervalModule />
           <TableLayout table={table} />
-        </TanstackAopTableComposition>
+        </PluginEntryPoint>
       </div>
     </div>
   );
@@ -142,52 +116,51 @@ export default function App() {
 const TableLayout = <TData,>({
   table,
 }: React.PropsWithChildren<{ table: Table<TData> }>) => {
-  const { headProps, bodyProps } = useAopTableCompositionProps();
   return (
-    <table>
-      <thead {...headProps}>
+    <RenderTable>
+      <RenderTableHead>
         {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
+          <RenderTableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id}>
+              <RenderTableHeadCell key={header.id}>
                 {header.isPlaceholder
                   ? null
                   : flexRender(
                       header.column.columnDef.header,
                       header.getContext()
                     )}
-              </th>
+              </RenderTableHeadCell>
             ))}
-          </tr>
+          </RenderTableRow>
         ))}
-      </thead>
-      <tbody {...bodyProps}>
+      </RenderTableHead>
+      <RenderTableBody>
         {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
+          <RenderTableRow key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>
+              <RenderTableDataCell key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
+              </RenderTableDataCell>
             ))}
-          </tr>
+          </RenderTableRow>
         ))}
-      </tbody>
-      <tfoot>
+      </RenderTableBody>
+      <RenderTableFoot>
         {table.getFooterGroups().map((footerGroup) => (
-          <tr key={footerGroup.id}>
+          <RenderTableRow key={footerGroup.id}>
             {footerGroup.headers.map((header) => (
-              <th key={header.id}>
+              <RenderTableHeadCell key={header.id}>
                 {header.isPlaceholder
                   ? null
                   : flexRender(
                       header.column.columnDef.footer,
                       header.getContext()
                     )}
-              </th>
+              </RenderTableHeadCell>
             ))}
-          </tr>
+          </RenderTableRow>
         ))}
-      </tfoot>
-    </table>
+      </RenderTableFoot>
+    </RenderTable>
   );
 };

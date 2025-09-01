@@ -1,23 +1,17 @@
 import { useState, PropsWithChildren } from "react";
-import {
-  RenderCompositionProvider,
-  RendererCompositionVariant,
-  RendererCompositionDefaultValue,
-} from "./context/RendererComposition";
-import { RendererCompositionSetProvider } from "./context/RendererCompositionSet";
+import { PluginProvider, PluginContext } from "./plugin/Context";
 
 // render as composition
-export const TanstackAopTableComposition = ({
-  children,
-}: PropsWithChildren) => {
-  const [state, setState] = useState<RendererCompositionVariant>(
-    RendererCompositionDefaultValue
-  );
+export const PluginEntryPoint = ({ children }: PropsWithChildren) => {
+  const [state, setState] = useState<PluginContext["value"]>([]);
   return (
-    <RendererCompositionSetProvider value={setState}>
-      <RenderCompositionProvider value={state}>
-        {children}
-      </RenderCompositionProvider>
-    </RendererCompositionSetProvider>
+    <PluginProvider
+      value={{
+        value: state,
+        setValue: setState,
+      }}
+    >
+      {children}
+    </PluginProvider>
   );
 };

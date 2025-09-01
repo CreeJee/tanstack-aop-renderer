@@ -1,14 +1,25 @@
-export { TanstackAopTableComposition } from "./table";
+export { PluginEntryPoint } from "./table";
 export {
-  TanstackAopTableTable,
-  TanstackAopTableTableBody,
-  TanstackAopTableTableCaption,
-  TanstackAopTableTableCell,
-  TanstackAopTableTableCol,
-  TanstackAopTableTableColGroup,
-  TanstackAopTableTableFoot,
-  TanstackAopTableTableHead,
-  TanstackAopTableTableHeadRow,
-  TanstackAopTableTableRow,
-} from "./renderer/AOPTableRenderer";
-export { useAopTableCompositionProps } from "./context/RendererComposition";
+  RenderTable,
+  RenderTableBody,
+  RenderTableCaption,
+  RenderTableDataCell,
+  RenderTableCol,
+  RenderTableColGroup,
+  RenderTableFoot,
+  RenderTableHead,
+  RenderTableHeadCell,
+  RenderTableRow,
+} from "./renderer";
+export {
+  PluginTable,
+  PluginTableCaption,
+  PluginTableHead,
+  PluginTableHeadCell,
+  PluginTableBody,
+  PluginTableRow,
+  PluginTableDataCell,
+  PluginTableFoot,
+  PluginTableColGroup,
+  PluginTableCol,
+} from "./plugin/Plugin";

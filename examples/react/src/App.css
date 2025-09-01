@@ -40,3 +40,7 @@ tfoot th {
 .bg-green {
   background-color: green;
 }
+
+.underline {
+  text-decoration: underline;
+}
