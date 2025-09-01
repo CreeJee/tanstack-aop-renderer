@@ -42,16 +42,88 @@ pnpm add tanstack-aop-renderer
 ## Basic Usage
 
 ```tsx
-<TanstackAopTableComposition>
-  <TanstackAopTableTableHead />
-  <TanstackAopTableTableBody />
-  {/* Optional: Add your custom modules */}
-</TanstackAopTableComposition>
+import {
+  PluginEntryPoint,
+  RenderTableDataCell,
+  RenderTableRow,
+  RenderTable,
+  RenderTableBody,
+  RenderTableFoot,
+  RenderTableHead,
+  RenderTableHeadCell,
+} from "@tanstack-table-aop/react";
+
+function App() {
+  // define tanstack data and columns
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+  return (
+    <PluginEntryPoint>
+      <HeadBoldIntervalModule />
+      <BodyBoldModule />
+      <BodyBGModule />
+      <BodyUnderlineIntervalModule />
+      <TableLayout table={table} />
+    </PluginEntryPoint>
+  );
+
+  const TableLayout = <TData,>({
+    table,
+  }: React.PropsWithChildren<{ table: Table<TData> }>) => {
+    return (
+      <RenderTable>
+        <RenderTableHead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <RenderTableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <RenderTableHeadCell key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </RenderTableHeadCell>
+              ))}
+            </RenderTableRow>
+          ))}
+        </RenderTableHead>
+        <RenderTableBody>
+          {table.getRowModel().rows.map((row) => (
+            <RenderTableRow key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <RenderTableDataCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </RenderTableDataCell>
+              ))}
+            </RenderTableRow>
+          ))}
+        </RenderTableBody>
+        <RenderTableFoot>
+          {table.getFooterGroups().map((footerGroup) => (
+            <RenderTableRow key={footerGroup.id}>
+              {footerGroup.headers.map((header) => (
+                <RenderTableHeadCell key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.footer,
+                        header.getContext()
+                      )}
+                </RenderTableHeadCell>
+              ))}
+            </RenderTableRow>
+          ))}
+        </RenderTableFoot>
+      </RenderTable>
+    );
+  };
+}
 ```
-
-The usual `useReactTable()` from TanStack Table is used as-is.
-
----
 
 ## Example
 

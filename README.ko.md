@@ -48,11 +48,87 @@ pnpm add tanstack-aop-renderer
 ## 기본 사용법
 
 ```tsx
-<TanstackAopTableComposition>
-  <TanstackAopTableTableHead />
-  <TanstackAopTableTableBody />
-  {/* 필요시 Custom Module 추가 가능 */}
-</TanstackAopTableComposition>
+import {
+  PluginEntryPoint,
+  RenderTableDataCell,
+  RenderTableRow,
+  RenderTable,
+  RenderTableBody,
+  RenderTableFoot,
+  RenderTableHead,
+  RenderTableHeadCell,
+} from "@tanstack-table-aop/react";
+
+function App() {
+  // 이하 생략
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+  return (
+    <PluginEntryPoint>
+      <HeadBoldIntervalModule />
+      <BodyBoldModule />
+      <BodyBGModule />
+      <BodyUnderlineIntervalModule />
+      <TableLayout table={table} />
+    </PluginEntryPoint>
+  );
+
+  const TableLayout = <TData,>({
+    table,
+  }: React.PropsWithChildren<{ table: Table<TData> }>) => {
+    return (
+      <RenderTable>
+        <RenderTableHead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <RenderTableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <RenderTableHeadCell key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </RenderTableHeadCell>
+              ))}
+            </RenderTableRow>
+          ))}
+        </RenderTableHead>
+        <RenderTableBody>
+          {table.getRowModel().rows.map((row) => (
+            <RenderTableRow key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <RenderTableDataCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </RenderTableDataCell>
+              ))}
+            </RenderTableRow>
+          ))}
+        </RenderTableBody>
+        <RenderTableFoot>
+          {table.getFooterGroups().map((footerGroup) => (
+            <RenderTableRow key={footerGroup.id}>
+              {footerGroup.headers.map((header) => (
+                <RenderTableHeadCell key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.footer,
+                        header.getContext()
+                      )}
+                </RenderTableHeadCell>
+              ))}
+            </RenderTableRow>
+          ))}
+        </RenderTableFoot>
+      </RenderTable>
+    );
+  };
+}
 ```
 
 TanStack Table 의 `useReactTable()` 은 그대로 사용하면 됩니다.
