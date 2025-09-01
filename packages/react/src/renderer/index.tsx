@@ -19,9 +19,6 @@ const useRenderProps = <Type extends PluginTypes>(
   const pluginId = usePluginId();
   const queue = usePluginRenderQueue(type);
   if (queue.length === 0) return props;
-  if (queue.length > 0) {
-    console.log(queue);
-  }
   return (
     queue.reduce((acc, curr) => {
       return {
