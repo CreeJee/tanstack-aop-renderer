@@ -69,10 +69,7 @@ function App() {
   });
   return (
     <PluginEntryPoint>
-      <HeadBoldIntervalModule />
-      <BodyBoldModule />
-      <BodyBGModule />
-      <BodyUnderlineIntervalModule />
+      <PluginTableBody className="bg-green" />
       <TableLayout table={table} />
     </PluginEntryPoint>
   );
